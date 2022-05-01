@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace ProyectoSorting
 {
-    class SortingArray
+    public class SortingArray
     {
         public int[] array;
         public int[] arrayCreciente;
@@ -136,14 +136,40 @@ namespace ProyectoSorting
                 }
             }
         }
-        //public void Sort1(int[] array)
-        //{
-
-        //}
-        //public void Sort2(int[] array)
-        //{
-
-        //}
+        public void InsertionSort(int[] array)
+        {
+            int j, temp;
+            for (int i = 1; i <= array.Length - 1; i++)
+            {
+                temp = array[i];
+                j = i - 1;
+                while (j >= 0 && array[j] > temp)
+                {
+                    array[j + 1] = array[j];
+                    j--;
+                }
+                array[j + 1] = temp;
+            }
+        }
+        public void SelectionSort(int[] array)
+        {
+            int n = 10;
+            int temp, smallest;
+            for (int i = 0; i < n - 1; i++)
+            {
+                smallest = i;
+                for (int j = i + 1; j < n; j++)
+                {
+                    if (array[j] < array[smallest])
+                    {
+                        smallest = j;
+                    }
+                }
+                temp = array[smallest];
+                array[smallest] = array[i];
+                array[i] = temp;
+            }
+        }
     }
 
     class Program
@@ -161,6 +187,8 @@ namespace ProyectoSorting
             array.Sort(array.BubbleSort);
             array.Sort(array.BubbleSortEarlyExit);
             array.Sort(array.QuickSort);
+            array.Sort(array.InsertionSort);
+            array.Sort(array.SelectionSort);
         }
     }
 }
